@@ -22,4 +22,4 @@ cost_postal = cost_calculator_postal.shipping_cost(order)
 assert cost_postal == 5.0
 
 # Everything OK if we reach this point
-print("All tests passed!")
+print("All tests passed!!")
