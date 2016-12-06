@@ -5,7 +5,18 @@ order = Order()
 
 # Test FedeEx shipping
 strategy_fedex = FedExStrategy()
+
+# Another possibility, with a function:
+#def fedex_strategy(order):
+#    return 3.0
+#
+#strategy_fedex = fedex_strategy
+
 cost_calculator_fedex = ShippingCost(strategy_fedex)
+
+# A variation to this with a lambda expression:
+# cost_calculator_fedex = ShippingCost(lambda order: 3.00)
+
 cost_fedex = cost_calculator_fedex.shipping_cost(order)
 assert cost_fedex == 3.0
 
