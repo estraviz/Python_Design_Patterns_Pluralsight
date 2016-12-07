@@ -20,5 +20,8 @@ class ForecastKPIs(AbsObserver):
 
     def display(self):
         print("Forecast open tickets: {}".format(self.open_tickets))
-        print("New tickets expected in one hour: {}".format(self.closed_tickets))
-        print("Tickets expected to be closed in next hour: {}\n".format(self.new_tickets))
+        print("New tickets expected in one hour: {}".format(self.new_tickets))
+        print("Tickets expected to be closed in next hour: {}\n".format(self.closed_tickets))
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self._kpis.detach(self)

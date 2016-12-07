@@ -24,3 +24,8 @@ class CurrentKPIs(AbsObserver):
         print("Current open tickets: {}".format(self.open_tickets))
         print("New tickets in last hour: {}".format(self.new_tickets))
         print("Tickets closed in last hour: {}\n".format(self.closed_tickets))
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        # Concrete observer that implements the __exit__ method. Python ensures that it will run when the context ends
+        # Detach the Observer from the Subject
+        self._kpis.detach(self)

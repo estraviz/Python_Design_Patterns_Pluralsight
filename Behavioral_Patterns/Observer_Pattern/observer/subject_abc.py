@@ -2,7 +2,7 @@ import abc
 from observer import AbsObserver
 
 class AbsSubject(object):
-    """ Abstract Subject base class """
+    """ Abstract Subject base class. It is also now a context manager """
 
     __metaclass__ = abc.ABCMeta
     _observers = set()
@@ -28,3 +28,10 @@ class AbsSubject(object):
                 observer.update()
             else:
                 observer.update(value)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        # Here we implement the __exit__ method and clear the set of observers, thus removing any dangling references
+        self._observers.clear()
